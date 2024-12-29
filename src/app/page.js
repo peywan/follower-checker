@@ -19,7 +19,7 @@ export default function Home() {
 
   const handleCompare = async () => {
     if (!followersFile || !followingFile) {
-      alert('Please upload both files.');
+      setError('Please upload both files.');
       return;
     }
 
