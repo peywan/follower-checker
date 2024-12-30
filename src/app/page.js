@@ -9,6 +9,7 @@ export default function Home() {
   const [results, setResults] = useState([]);
   const [error, setError] = useState('');
 
+  // Handle file selection
   const handleFileChange = (e, type) => {
     if (type === 'followers') {
       setFollowersFile(e.target.files[0]);
@@ -17,6 +18,7 @@ export default function Home() {
     }
   };
 
+  // Handle Compare button click
   const handleCompare = async () => {
     if (!followersFile || !followingFile) {
       alert('Please upload both files.');
@@ -28,6 +30,7 @@ export default function Home() {
     formData.append('following', followingFile);
 
     try {
+      // You can replace the fetch URL with your actual backend if needed
       const res = await fetch('http://127.0.0.1:5000/api/compare', {
         method: 'POST',
         body: formData,
@@ -60,7 +63,9 @@ export default function Home() {
             <ol>
               <li>Download your Instagram followers and following lists.</li>
               <li>Upload the files in the respective fields below.</li>
-              <li>Click <b>Compare</b> to find out who isn’t following you back!</li>
+              <li>
+                Click <b>Compare</b> to find out who isn’t following you back!
+              </li>
             </ol>
           </div>
 
@@ -87,7 +92,8 @@ export default function Home() {
           <div className={styles.results}>
             <h2>Not Following Back:</h2>
             {error && <p className={styles.error}>{error}</p>}
-            <div className={styles.resultContainer}>
+
+            <div className={styles.resultGrid}>
               {results.map((user, index) => (
                   <div key={index} className={styles.resultBox}>
                     <a

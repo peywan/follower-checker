@@ -1,148 +1,172 @@
+/* Overall container styling */
 .container {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   padding: 2rem;
-  background: linear-gradient(to bottom, #ffffff, #e8e8e8);
+  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+  color: #333;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
 }
 
+/* Header styling */
 .header {
   margin-bottom: 2rem;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
   color: #1c1e21;
 }
 
+/* Main content area */
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  max-width: 600px;
-  width: 100%;
 }
 
+/* Instructions box */
 .instructions {
-  padding: 1.5rem;
-  background: #ffffff;
-  border-radius: 10px;
+  margin-bottom: 2rem;
+  background: #fff;
+  padding: 1rem 2rem;
+  border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
 }
 
+/* Card for file inputs */
 .card {
-  padding: 1.5rem;
-  background: #ffffff;
-  border-radius: 10px;
+  margin: 1rem 0;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
 
+/* Label for file inputs */
 .label {
-  font-size: 1rem;
   font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
   color: #333;
 }
 
+/* Styling file inputs */
 .fileInput {
-  display: block;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 1rem;
   width: 100%;
-  box-sizing: border-box;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
 }
 
+.fileInput:hover {
+  border-color: #bbb;
+}
+
+/* Compare Button styling */
 .compareButton {
-  padding: 0.8rem 1.2rem;
-  background: #0070f3;
-  color: #ffffff;
-  border-radius: 5px;
-  cursor: pointer;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
   border: none;
+  background: #0070f3;
+  color: #fff;
+  border-radius: 8px;
   font-size: 1rem;
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .compareButton:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Results container */
 .results {
   margin-top: 2rem;
 }
 
-.resultContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.resultBox {
-  background: #ffffff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.resultBox:hover {
-  transform: translateY(-5px);
-  background: #f5f5f5;
-}
-
-.resultBox a {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #4267b2;
-  text-decoration: none;
-}
-
+/* Error text styling */
 .error {
   color: red;
-  font-size: 1rem;
   margin-top: 1rem;
 }
 
-
-/* Other existing styles */
-
-.resultContainer {
-  display: flex;
-  flex-wrap: wrap;
+/* The grid for returned users: 5 columns */
+.resultGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
-  justify-content: center;
+  justify-items: center;
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+/* Individual user boxes */
 .resultBox {
-  background: #ffffff;
+  background: #fff;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+  width: 120px;      /* Uniform width */
+  height: 50px;      /* Uniform height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
+/* Hover effect on each user box */
 .resultBox:hover {
   transform: translateY(-5px);
   background: #f5f5f5;
 }
 
+/* Link styling inside the box */
 .resultBox a {
   font-size: 1rem;
   font-weight: bold;
   color: #4267b2;
   text-decoration: none;
+  word-wrap: break-word; /* Allows long words to break */
+  overflow-wrap: break-word; /* Ensures text wraps within the box */
+  text-align: center; /* Centers text within the box */
+  display: block; /* Ensures text respects the block structure */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+
 }
 
+
+/* On smaller screens, make the grid more responsive */
+@media (max-width: 600px) {
+  .resultGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* On smaller screens, make the box smaller */
+@media (max-width: 400px) {
+  .resultBox {
+    width: 100px;
+    height: 40px;
+  }
+}
+
+/* On smaller screens, make the box text smaller */
+  @media (max-width: 400px) {
+    .resultBox a {
+      font-size: 0.8rem;
+    }
+  }
