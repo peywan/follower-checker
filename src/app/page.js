@@ -30,7 +30,7 @@ export default function Home() {
     formData.append('following', followingFile);
 
     try {
-      // You can replace the fetch URL with your actual backend if needed
+      // Replace with your actual backend if needed
       const res = await fetch('http://127.0.0.1:5000/api/compare', {
         method: 'POST',
         body: formData,
@@ -58,8 +58,9 @@ export default function Home() {
         </header>
 
         <main className={styles.main}>
-          <div className={styles.instructions}>
-            <p>Follow these steps:</p>
+          {/* Instructions box */}
+          <div className={`${styles.box} ${styles.instructions}`}>
+            <p><b>Follow these steps:</b></p>
             <ol>
               <li>Download your Instagram followers and following lists.</li>
               <li>Upload the files in the respective fields below.</li>
@@ -69,7 +70,8 @@ export default function Home() {
             </ol>
           </div>
 
-          <div className={styles.card}>
+          {/* File-upload box */}
+          <div className={`${styles.box} ${styles.card}`}>
             <label className={styles.label}>Upload Followers List:</label>
             <input
                 type="file"
@@ -89,6 +91,7 @@ export default function Home() {
             </button>
           </div>
 
+          {/* Results section */}
           <div className={styles.results}>
             <h2>Not Following Back:</h2>
             {error && <p className={styles.error}>{error}</p>}

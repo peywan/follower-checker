@@ -26,38 +26,39 @@
   align-items: center;
 }
 
-/* Instructions box */
-.instructions {
-  margin-bottom: 2rem;
+/* Shared box style for instructions + upload card (equal width) */
+.box {
   background: #fff;
-  padding: 1rem 2rem;
+  padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+  max-width: 600px;   /* Both boxes equally wide */
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
-/* Card for file inputs */
+/* Specific styling for instructions box */
+.instructions {
+  text-align: left; /* left-align the instruction text */
+}
+
+/* Specific styling for card (upload box) */
 .card {
-  margin: 1rem 0;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
+  align-items: center; /* keep inputs and button centered */
 }
 
 /* Label for file inputs */
 .label {
   font-weight: bold;
   color: #333;
+  text-align: left;
+  width: 100%;
 }
 
-
+/* File input styling */
 .fileInput {
   width: 100%;
   padding: 0.5rem;
@@ -92,7 +93,6 @@
   background: #005bb5;
 }
 
-
 /* Compare Button styling */
 .compareButton {
   margin-top: 1rem;
@@ -112,10 +112,13 @@
   background: #005bb5;
 }
 
-
 /* Results container */
 .results {
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 /* Error text styling */
@@ -124,33 +127,34 @@
   margin-top: 1rem;
 }
 
-/* The grid for returned users: 5 columns */
+/* The grid for returned users */
 .resultGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-  justify-items: center;
-  padding: 1rem;
-  max-width: 900px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  justify-content: center;   /* center horizontally */
+  align-items: center;       /* center vertically in the grid cells */
+  gap: 1.5rem;
+  padding: 1.5rem 0;
   margin: 0 auto;
+  max-width: 900px;
 }
 
-/* Individual user boxes */
+/* Individual user boxes - bigger width/height */
 .resultBox {
   background: #fff;
-  padding: 1rem;
+  width: 160px;
+  height: 70px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 120px;      /* Uniform width */
-  height: 50px;      /* Uniform height */
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease, background 0.2s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-/* Hover effect on each user box */
 .resultBox:hover {
   transform: translateY(-5px);
   background: #f5f5f5;
@@ -162,36 +166,31 @@
   font-weight: bold;
   color: #4267b2;
   text-decoration: none;
-  word-wrap: break-word; /* Allows long words to break */
-  overflow-wrap: break-word; /* Ensures text wraps within the box */
-  text-align: center; /* Centers text within the box */
-  display: block; /* Ensures text respects the block structure */
-  word-wrap: break-word;
-  overflow-wrap: break-word;
   text-align: center;
-
+  white-space: normal;
+  display: block;
+  width: 100%;
+  padding: 0 0.5rem; /* small inner padding so text doesn't hit edges */
 }
 
+.resultBox a:hover {
+  text-decoration: underline;
+}
 
-/* On smaller screens, make the grid more responsive */
+/* On smaller screens, reduce grid columns & box size */
 @media (max-width: 600px) {
   .resultGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-
-/* On smaller screens, make the box smaller */
-@media (max-width: 400px) {
   .resultBox {
-    width: 100px;
-    height: 40px;
+    width: 120px;
+    height: 60px;
   }
 }
 
-/* On smaller screens, make the box text smaller */
-  @media (max-width: 400px) {
-    .resultBox a {
-      font-size: 0.8rem;
-    }
+/* On extra small screens, reduce text size */
+@media (max-width: 400px) {
+  .resultBox a {
+    font-size: 0.8rem;
   }
+}
