@@ -1,25 +1,148 @@
 .container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  padding: 2rem;
+  background: linear-gradient(to bottom, #ffffff, #e8e8e8);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 2rem;
 }
 
 .title {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1c1e21;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 600px;
+  width: 100%;
 }
 
 .instructions {
-  margin-bottom: 20px;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.uploadSection {
-  margin-bottom: 20px;
+.card {
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.fileInput {
+  display: block;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.compareButton {
+  padding: 0.8rem 1.2rem;
+  background: #0070f3;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.compareButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.results {
+  margin-top: 2rem;
+}
+
+.resultContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.resultBox {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.resultBox:hover {
+  transform: translateY(-5px);
+  background: #f5f5f5;
+}
+
+.resultBox a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4267b2;
+  text-decoration: none;
 }
 
 .error {
   color: red;
+  font-size: 1rem;
+  margin-top: 1rem;
 }
 
-.resultSection {
-  margin-top: 20px;
+
+/* Other existing styles */
+
+.resultContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
+
+.resultBox {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.resultBox:hover {
+  transform: translateY(-5px);
+  background: #f5f5f5;
+}
+
+.resultBox a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4267b2;
+  text-decoration: none;
+}
+

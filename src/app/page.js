@@ -19,7 +19,7 @@ export default function Home() {
 
   const handleCompare = async () => {
     if (!followersFile || !followingFile) {
-      setError('Please upload both files.');
+      alert('Please upload both files.');
       return;
     }
 
@@ -36,7 +36,7 @@ export default function Home() {
       const data = await res.json();
 
       if (res.ok) {
-        setResults(data.notFollowingBack || []);
+        setResults(data.notFollowingBack);
         setError('');
       } else {
         setError(data.error || 'An error occurred.');
@@ -50,44 +50,58 @@ export default function Home() {
 
   return (
       <div className={styles.container}>
-        <h1 className={styles.title}>Instagram Follower Checker</h1>
-        <div className={styles.instructions}>
-          <p>Follow these steps:</p>
-          <ol>
-            <li>Download your Instagram followers and following lists.</li>
-            <li>Upload the files in the respective fields below.</li>
-            <li>Click <b>Compare</b> to find out who isn’t following you back.</li>
-          </ol>
-        </div>
+        <header className={styles.header}>
+          <h1 className={styles.title}>Instagram Follower Checker</h1>
+        </header>
 
-        <div className={styles.uploadSection}>
-          <div>
-            <label>Upload Followers List:</label>
-            <input type="file" onChange={(e) => handleFileChange(e, 'followers')} />
+        <main className={styles.main}>
+          <div className={styles.instructions}>
+            <p>Follow these steps:</p>
+            <ol>
+              <li>Download your Instagram followers and following lists.</li>
+              <li>Upload the files in the respective fields below.</li>
+              <li>Click <b>Compare</b> to find out who isn’t following you back!</li>
+            </ol>
           </div>
-          <div>
-            <label>Upload Following List:</label>
-            <input type="file" onChange={(e) => handleFileChange(e, 'following')} />
+
+          <div className={styles.card}>
+            <label className={styles.label}>Upload Followers List:</label>
+            <input
+                type="file"
+                className={styles.fileInput}
+                onChange={(e) => handleFileChange(e, 'followers')}
+            />
+
+            <label className={styles.label}>Upload Following List:</label>
+            <input
+                type="file"
+                className={styles.fileInput}
+                onChange={(e) => handleFileChange(e, 'following')}
+            />
+
+            <button className={styles.compareButton} onClick={handleCompare}>
+              Compare
+            </button>
           </div>
-        </div>
 
-        <button onClick={handleCompare}>Compare</button>
-
-        <div className={styles.resultSection}>
-          {error && <p className={styles.error}>{error}</p>}
-          {results.length > 0 ? (
-              <>
-                <h2>Not Following Back:</h2>
-                <ul>
-                  {results.map((user, index) => (
-                      <li key={index}>{user}</li>
-                  ))}
-                </ul>
-              </>
-          ) : (
-              <p>No results yet.</p>
-          )}
-        </div>
+          <div className={styles.results}>
+            <h2>Not Following Back:</h2>
+            {error && <p className={styles.error}>{error}</p>}
+            <div className={styles.resultContainer}>
+              {results.map((user, index) => (
+                  <div key={index} className={styles.resultBox}>
+                    <a
+                        href={user.profileLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                      {user.username}
+                    </a>
+                  </div>
+              ))}
+            </div>
+          </div>
+        </main>
       </div>
   );
 }
