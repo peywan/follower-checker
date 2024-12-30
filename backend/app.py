@@ -1,5 +1,13 @@
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+from bs4 import BeautifulSoup
 import logging
 
+# Initialize Flask app
+app = Flask(__name__)
+CORS(app)
+
+# Set up logging
 logging.basicConfig(level=logging.DEBUG)
 
 @app.route('/api/compare', methods=['POST'])
@@ -27,8 +35,12 @@ def compare_files():
         not_following_back = list(set(following) - set(followers))
         logging.debug(f"Not Following Back: {not_following_back}")
 
+        # Format results
         results = [{"username": user, "profileLink": f"https://instagram.com/{user}"} for user in not_following_back]
         return jsonify({"notFollowingBack": results})
     except Exception as e:
         logging.error(f"Error occurred: {e}")
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
