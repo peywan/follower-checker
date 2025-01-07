@@ -1,8 +1,11 @@
 /* Overall container styling */
 .container {
+  width: 100%;        /* Ensures full width */
+  margin: 0;          /* Remove default body margins */
+  padding: 2rem 0;    /* Top/bottom padding */
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  padding: 2rem;
-  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+  /* Instagram-like gradient */
+  background: linear-gradient(135deg, #f58529 0%, #dd2a7b 40%, #8134af 65%, #515bd4 100%);
   color: #333;
   min-height: 100vh;
   text-align: center;
@@ -16,7 +19,7 @@
 .title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #1c1e21;
+  color: #fff;
 }
 
 /* Main content area */
@@ -26,36 +29,30 @@
   align-items: center;
 }
 
-/* Shared box style for instructions + upload card (equal width) */
-.box {
+/* Bubble styling */
+.bubble {
   background: #fff;
+  border-radius: 20px;
   padding: 1.5rem;
-  border-radius: 12px;
+  margin: 1rem auto;
+  width: 90%;       /* Let the bubble take ~90% of the screen width */
+  /* Remove max-width to allow full container width:
+     max-width: 600px; <-- remove this line */
+  text-align: left;
+  position: relative;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px;   /* Both boxes equally wide */
-  width: 100%;
-  margin-bottom: 2rem;
+  color: #333;
 }
 
-/* Specific styling for instructions box */
-.instructions {
-  text-align: left; /* left-align the instruction text */
-}
+/* Optional bubble arrow */
 
-/* Specific styling for card (upload box) */
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center; /* keep inputs and button centered */
-}
 
 /* Label for file inputs */
 .label {
   font-weight: bold;
   color: #333;
-  text-align: left;
-  width: 100%;
+  margin-bottom: 1rem;
+  display: block;
 }
 
 /* File input styling */
@@ -70,6 +67,7 @@
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease, transform 0.2s ease;
+  margin-bottom: 1rem;
 }
 
 .fileInput:hover {
@@ -78,7 +76,7 @@
 }
 
 .fileInput::file-selector-button {
-  background: #0070f3;
+  background: #dd2a7b;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -90,15 +88,15 @@
 }
 
 .fileInput::file-selector-button:hover {
-  background: #005bb5;
+  background: #bb2569;
 }
 
-/* Compare Button styling */
+/* Compare button */
 .compareButton {
   margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
+  padding: 22rem 1.5rem;
   border: none;
-  background: #0070f3;
+  background: #dd2a7b;
   color: #fff;
   border-radius: 8px;
   font-size: 1rem;
@@ -107,52 +105,33 @@
 }
 
 .compareButton:hover {
-  transform: scale(1.1);
+  transform: scale(1.07);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  background: #005bb5;
+  background: #bb2569;
 }
 
-/* Results container */
-.results {
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-  max-width: 1200px;
-  width: 100%;
-  padding: 0 1rem;
-}
-
-/* Error text styling */
-.error {
-  color: red;
-  margin-top: 1rem;
-}
-
-/* The grid for returned users */
+/* Results grid: exactly 5 columns */
 .resultGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  justify-content: center;   /* center horizontally */
-  align-items: center;       /* center vertically in the grid cells */
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.5rem;
-  padding: 1.5rem 0;
-  margin: 0 auto;
-  max-width: 900px;
+  margin-top: 1rem;
+  justify-items: center; /* Center each box */
 }
 
-/* Individual user boxes - bigger width/height */
 .resultBox {
-  background: #fff;
-  width: 160px;
-  height: 70px;
+  background: #ffffff;
+  width: 140px;
+  height: 65px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease, background 0.2s ease;
-  word-wrap: break-word;
+  text-align: center;
   overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .resultBox:hover {
@@ -160,24 +139,57 @@
   background: #f5f5f5;
 }
 
-/* Link styling inside the box */
 .resultBox a {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
-  color: #4267b2;
+  color: #dd2a7b;
   text-decoration: none;
-  text-align: center;
-  white-space: normal;
+  padding: 0 0.5rem;
   display: block;
-  width: 100%;
-  padding: 0 0.5rem; /* small inner padding so text doesn't hit edges */
 }
 
 .resultBox a:hover {
   text-decoration: underline;
 }
 
-/* On smaller screens, reduce grid columns & box size */
+/* Error text styling */
+.error {
+  color: #ff4444;
+  margin-top: 1rem;
+}
+
+/* Footer styling */
+.footer {
+  margin-top: auto;
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer bubble(s) */
+.footerBubble {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* If you want the same arrow style in the footer */
+
+
+/* Responsive fallbacks */
+@media (max-width: 1000px) {
+  .resultGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 @media (max-width: 600px) {
   .resultGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -187,10 +199,151 @@
     height: 60px;
   }
 }
-
-/* On extra small screens, reduce text size */
 @media (max-width: 400px) {
   .resultBox a {
     font-size: 0.8rem;
   }
+}
+
+/* File upload row to display boxes side by side */
+.fileUploadRow {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;      /* space between boxes */
+  margin-bottom: 1rem;
+}
+
+/* Box for each file input */
+.fileUploadBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;             /* each box about half width */
+  min-width: 200px;       /* so they don't get too small */
+  background: #f9f9f9;    /* subtle background or remove if you like */
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* File input styling - bigger, not too wide */
+.fileInput {
+  width: auto;            /* let it size by content */
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #f0f0f0;
+  font-size: 1rem;        /* bigger text */
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+/* Control the button inside the input selector */
+.fileInput::file-selector-button {
+  background: #dd2a7b; /* Instagram pink */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Make the compare button bigger */
+/* Compare button: centered and bigger */
+.compareButton {
+  margin-top: 1rem;
+  padding: 1rem 2.5rem; /* Larger button size */
+  background: #dd2a7b;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem; /* Slightly bigger font */
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block; /* Ensures it spans full width */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto;
+}
+
+.compareButton:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  background: #bb2569;
+}
+
+/* Hide the default file input so we can style everything ourselves */
+.hiddenFileInput {
+  display: none;
+}
+
+/* Container to group the label and the 'No file chosen' text side by side */
+.customFileContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* space between button and filename text */
+}
+
+/* The styled "Choose file" button (acts like the file input's label) */
+.customFileButton {
+  background: #dd2a7b; /* Instagram pink */
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.customFileButton:hover {
+  background: #bb2569;
+}
+
+/* The text that displays the selected file name or "No file chosen" */
+.fileNameSpan {
+  background: #f0f0f0;
+  color: #555;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 120px;   /* so it's large enough to see */
+  text-align: center;
+  display: inline-block;
+}
+
+/* EXAMPLE: Side-by-side file boxes */
+.fileUploadRow {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.fileUploadBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  min-width: 230px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* The rest of your styles (container, bubble, etc.) remain as before... */
+
+.header2 {
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  margin: 20px;
 }
