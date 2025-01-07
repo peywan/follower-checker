@@ -164,11 +164,25 @@
   width: 100%;
   padding: 2rem 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
+.footerContainer {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem; /* Slightly larger padding for combined content */
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.footerContainer p {
+  margin: 0.5rem 0; /* Space between paragraphs */
+  font-size: 1rem; /* Adjust font size as needed */
+  color: #333;
+}
 /* Footer bubble(s) */
 .footerBubble {
   background: #fff;

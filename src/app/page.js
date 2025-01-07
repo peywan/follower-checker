@@ -144,17 +144,16 @@ export default function Home() {
 
         {/* FOOTER */}
         <footer className={styles.footer}>
-          <div className={styles.footerBubble}>
+          <div className={styles.footerContainer}>
             <p>
               <b>Disclaimer:</b> This tool is not affiliated with or endorsed by Instagram.
-              <br/>
+              <br />
               All processing is done locally. We do not store your data.
             </p>
-          </div>
-          <div className={styles.footerBubble}>
-            <p>© 2025 Follower checker LLC. All rights reserved.</p>
+            <p>© 2025 Follower Checker LLC. All rights reserved.</p>
           </div>
         </footer>
+
       </div>
   );
 }
