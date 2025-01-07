@@ -1,10 +1,14 @@
+/* Variables for font sizes */
+:root {
+  --fs-small: 1rem;
+  --fs-medium: 1.2rem;
+  --fs-large: 1.5rem;
+}
+
 /* Overall container styling */
 .container {
-  width: 100%;        /* Ensures full width */
-  margin: 0;          /* Remove default body margins */
-  padding: 2rem 0;    /* Top/bottom padding */
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  /* Instagram-like gradient */
+  padding: 2rem 0;
   background: linear-gradient(135deg, #f58529 0%, #dd2a7b 40%, #8134af 65%, #515bd4 100%);
   color: #333;
   min-height: 100vh;
@@ -17,7 +21,7 @@
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: var(--fs-large);
   font-weight: bold;
   color: #fff;
 }
@@ -29,310 +33,30 @@
   align-items: center;
 }
 
-/* Bubble styling */
+/* Bubble styling for sections */
 .bubble {
   background: #fff;
   border-radius: 20px;
   padding: 1.5rem;
   margin: 1rem auto;
-  width: 90%;       /* Let the bubble take ~90% of the screen width */
-  /* Remove max-width to allow full container width:
-     max-width: 600px; <-- remove this line */
-  text-align: left;
-  position: relative;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  color: #333;
-}
-
-/* Optional bubble arrow */
-
-
-/* Label for file inputs */
-.label {
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-/* File input styling */
-.fileInput {
-  width: 100%;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 8px;
-  background: #f0f0f0;
-  font-size: 0.9rem;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease, transform 0.2s ease;
-  margin-bottom: 1rem;
-}
-
-.fileInput:hover {
-  background: #e8e8e8;
-  transform: scale(1.02);
-}
-
-.fileInput::file-selector-button {
-  background: #dd2a7b;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.fileInput::file-selector-button:hover {
-  background: #bb2569;
-}
-
-/* Compare button */
-.compareButton {
-  margin-top: 1rem;
-  padding: 22rem 1.5rem;
-  border: none;
-  background: #dd2a7b;
-  color: #fff;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.compareButton:hover {
-  transform: scale(1.07);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  background: #bb2569;
-}
-
-/* Results grid: exactly 5 columns */
-.resultGrid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
-  margin-top: 1rem;
-  justify-items: center; /* Center each box */
-}
-
-.resultBox {
-  background: #ffffff;
-  width: 140px;
-  height: 65px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, background 0.2s ease;
-  text-align: center;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
-
-.resultBox:hover {
-  transform: translateY(-5px);
-  background: #f5f5f5;
-}
-
-.resultBox a {
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #dd2a7b;
-  text-decoration: none;
-  padding: 0 0.5rem;
-  display: block;
-}
-
-.resultBox a:hover {
-  text-decoration: underline;
-}
-
-/* Error text styling */
-.error {
-  color: #ff4444;
-  margin-top: 1rem;
-}
-
-/* Footer styling */
-.footer {
-  margin-top: auto;
-  width: 100%;
-  padding: 2rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footerContainer {
-  background: #fff;
-  border-radius: 12px;
-  padding: 1.5rem; /* Slightly larger padding for combined content */
   width: 90%;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.footerContainer p {
-  margin: 0.5rem 0; /* Space between paragraphs */
-  font-size: 1rem; /* Adjust font size as needed */
-  color: #333;
-}
-/* Footer bubble(s) */
-.footerBubble {
-  background: #fff;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  width: 90%;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-/* If you want the same arrow style in the footer */
-
-
-/* Responsive fallbacks */
-@media (max-width: 1000px) {
-  .resultGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (max-width: 600px) {
-  .resultGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .resultBox {
-    width: 120px;
-    height: 60px;
-  }
-}
-@media (max-width: 400px) {
-  .resultBox a {
-    font-size: 0.8rem;
-  }
-}
-
-/* File upload row to display boxes side by side */
-.fileUploadRow {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;      /* space between boxes */
-  margin-bottom: 1rem;
-}
-
-/* Box for each file input */
-.fileUploadBox {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 45%;             /* each box about half width */
-  min-width: 200px;       /* so they don't get too small */
-  background: #f9f9f9;    /* subtle background or remove if you like */
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  justify-content: center;
 }
 
-/* File input styling - bigger, not too wide */
-.fileInput {
-  width: auto;            /* let it size by content */
-  padding: 0.8rem;
-  border: none;
-  border-radius: 8px;
-  background: #f0f0f0;
-  font-size: 1rem;        /* bigger text */
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: background 0.3s ease, transform 0.2s ease;
+/* Header text for sections (e.g., Not Following You Back) */
+.header2 {
+  font-size: var(--fs-large);
+  font-weight: bold;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
-/* Control the button inside the input selector */
-.fileInput::file-selector-button {
-  background: #dd2a7b; /* Instagram pink */
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1.2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-/* Make the compare button bigger */
-/* Compare button: centered and bigger */
-.compareButton {
-  margin-top: 1rem;
-  padding: 1rem 2.5rem; /* Larger button size */
-  background: #dd2a7b;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.2rem; /* Slightly bigger font */
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: block; /* Ensures it spans full width */
-  margin-left: auto; /* Center horizontally */
-  margin-right: auto;
-}
-
-.compareButton:hover {
-  transform: scale(1.06);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-  background: #bb2569;
-}
-
-/* Hide the default file input so we can style everything ourselves */
-.hiddenFileInput {
-  display: none;
-}
-
-/* Container to group the label and the 'No file chosen' text side by side */
-.customFileContainer {
-  display: flex;
-  align-items: center;
-  gap: 1rem; /* space between button and filename text */
-}
-
-/* The styled "Choose file" button (acts like the file input's label) */
-.customFileButton {
-  background: #dd2a7b; /* Instagram pink */
-  color: #fff;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.customFileButton:hover {
-  background: #bb2569;
-}
-
-/* The text that displays the selected file name or "No file chosen" */
-.fileNameSpan {
-  background: #f0f0f0;
-  color: #555;
-  padding: 0.7rem 1rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  min-width: 120px;   /* so it's large enough to see */
-  text-align: center;
-  display: inline-block;
-}
-
-/* EXAMPLE: Side-by-side file boxes */
+/* Custom file upload styling */
 .fileUploadRow {
   display: flex;
   justify-content: center;
@@ -349,15 +73,142 @@
   background: #f9f9f9;
   border-radius: 12px;
   padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* The rest of your styles (container, bubble, etc.) remain as before... */
+.hiddenFileInput {
+  display: none;
+}
 
-.header2 {
-  color: #333;
-  margin-bottom: 1rem;
+.customFileContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.customFileButton {
+  background: #dd2a7b;
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-size: var(--fs-medium);
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.customFileButton:hover {
+  background: #bb2569;
+}
+
+.fileNameSpan {
+  background: #f0f0f0;
+  color: #555;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-size: var(--fs-medium);
   text-align: center;
-  font-size: 2rem;
-  margin: 20px;
+  display: inline-block;
+  min-width: 120px;
+}
+
+/* Compare button styling */
+.compareButton {
+  margin-top: 1rem;
+  padding: 1rem 2.5rem;
+  background: #dd2a7b;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: var(--fs-large);
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+}
+
+.compareButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  background: #bb2569;
+}
+
+/* Results container with smooth transition */
+.resultsContainer {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.resultsContainer[data-visible='true'] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Results grid */
+.resultGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  justify-items: center;
+}
+
+/* Result box styling */
+.resultBox {
+  background: #ffffff;
+  width: 180px;
+  min-height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resultBox:hover {
+  transform: translateY(-5px);
+  background: #f5f5f5;
+}
+
+.resultBox a {
+  font-size: var(--fs-medium);
+  font-weight: bold;
+  color: #dd2a7b;
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.resultBox a:hover {
+  text-decoration: underline;
+}
+
+/* Footer styling */
+.footer {
+  margin-top: auto;
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerContainer {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footerContainer p {
+  margin: 0.5rem 0;
+  font-size: var(--fs-small);
+  color: #333;
 }
