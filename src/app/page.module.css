@@ -1,196 +1,317 @@
-/* Overall container styling */
+/* ===================================== */
+/* 1. Container & Scoped Variables */
+/* ===================================== */
 .container {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  padding: 2rem;
-  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
-  color: #333;
-  min-height: 100vh;
-  text-align: center;
+    /* Use these custom properties like "globals" within this page */
+    --fs-small: 1rem;
+    --fs-medium: 1.2rem;
+    --fs-large: 1.5rem;
+    --primary-color: #dd2a7b;
+    --primary-hover: #bb2569;
+    --secondary-bg: #f9f9f9;
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    padding: 2rem 0;
+    color: #333;
+    min-height: 100vh;
+    text-align: center;
+    position: relative; /* for pulse elements */
+    overflow: hidden;   /* so pulses don't scroll out of container */
+
+    /* If you’d like an initial background gradient,
+       you can keep or remove this since you also set it inline
+       in page.js with containerStyle. */
+    background: linear-gradient(
+            135deg,
+            #f58529 0%,
+            #dd2a7b 40%,
+            #8134af 65%,
+            #515bd4 100%
+    );
 }
 
-/* Header styling */
+/* Optional .header styling, if needed */
 .header {
-  margin-bottom: 2rem;
+    /* Add custom styling if needed */
 }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #1c1e21;
-}
-
-/* Main content area */
+/* ===================================== */
+/* 2. Layout & Bubbles */
+/* ===================================== */
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Shared box style for instructions + upload card (equal width) */
-.box {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px;   /* Both boxes equally wide */
-  width: 100%;
-  margin-bottom: 2rem;
+.bubble {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin: 1rem auto;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Specific styling for instructions box */
-.instructions {
-  text-align: left; /* left-align the instruction text */
+/* ===================================== */
+/* 3. Headers & Text */
+/* ===================================== */
+.title {
+    font-size: var(--fs-large);
+    font-weight: bold;
+    color: #fff; /* Over the gradient background */
 }
 
-/* Specific styling for card (upload box) */
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center; /* keep inputs and button centered */
+.header2 {
+    font-size: var(--fs-large);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
-/* Label for file inputs */
-.label {
-  font-weight: bold;
-  color: #333;
-  text-align: left;
-  width: 100%;
+.error {
+    color: red;
+    margin-bottom: 1rem;
 }
 
-/* File input styling */
-.fileInput {
-  width: 100%;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 8px;
-  background: #f0f0f0;
-  font-size: 0.9rem;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease, transform 0.2s ease;
+/* ===================================== */
+/* 4. File Upload */
+/* ===================================== */
+.fileUploadRow {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
 }
 
-.fileInput:hover {
-  background: #e8e8e8;
-  transform: scale(1.02);
+/* Force side-by-side for screens >= 600px */
+@media (min-width: 600px) {
+    .fileUploadRow {
+        flex-wrap: nowrap; /* No wrapping on larger screens */
+    }
 }
 
-.fileInput::file-selector-button {
-  background: #0070f3;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
+.fileUploadBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    min-width: 230px;
+    background: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: var(--box-shadow);
 }
 
-.fileInput::file-selector-button:hover {
-  background: #005bb5;
+.hiddenFileInput {
+    display: none;
 }
 
-/* Compare Button styling */
+.customFileContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.customFileButton {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-size: var(--fs-medium);
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.customFileButton:hover {
+    background: var(--primary-hover);
+}
+
+.fileNameSpan {
+    background: #f0f0f0;
+    color: #555;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    font-size: var(--fs-medium);
+    text-align: center;
+    display: inline-block;
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+/* Tooltip for full file name on hover */
+.fileNameSpan:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: var(--fs-small);
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* ===================================== */
+/* 5. Buttons */
+/* ===================================== */
 .compareButton {
-  margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  background: #0070f3;
-  color: #fff;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 1rem;
+    padding: 1rem 2.5rem;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: var(--fs-large);
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
 }
 
 .compareButton:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  background: #005bb5;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    background: var(--primary-hover);
 }
 
-/* Results container */
-.results {
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-  max-width: 1200px;
-  width: 100%;
-  padding: 0 1rem;
+/* ===================================== */
+/* 6. Results */
+/* ===================================== */
+.resultsContainer {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.resultsContainer[data-visible='true'] {
+    opacity: 1;
+    transform: scale(1);
 }
 
-/* Error text styling */
-.error {
-  color: red;
-  margin-top: 1rem;
-}
-
-/* The grid for returned users */
 .resultGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  justify-content: center;   /* center horizontally */
-  align-items: center;       /* center vertically in the grid cells */
-  gap: 1.5rem;
-  padding: 1.5rem 0;
-  margin: 0 auto;
-  max-width: 900px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem; /* Slight gap between boxes */
+    margin-top: 1rem;
+    justify-items: center;
 }
 
-/* Individual user boxes - bigger width/height */
 .resultBox {
-  background: #fff;
-  width: 160px;
-  height: 70px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, background 0.2s ease;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+    background: #ffffff;
+    width: 400px;
+    height: 200px;
+    border-radius: 25px;
+    padding: 5px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    /* margin: 0.2rem;  <-- If you want more spacing between boxes */
+}
+
+/* 1) Larger Username Text */
+.resultBox a {
+    font-size: 1.5rem; /* Increase this to see a bigger difference (e.g., 2rem) */
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
 }
 
 .resultBox:hover {
-  transform: translateY(-5px);
-  background: #f5f5f5;
+    transform: translateY(-5px);
+    background: #f5f5f5;
 }
 
-/* Link styling inside the box */
-.resultBox a {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #4267b2;
-  text-decoration: none;
-  text-align: center;
-  white-space: normal;
-  display: block;
-  width: 100%;
-  padding: 0 0.5rem; /* small inner padding so text doesn't hit edges */
+.resultBox:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: var(--fs-small);
+    white-space: nowrap;
+    z-index: 10;
 }
 
-.resultBox a:hover {
-  text-decoration: underline;
+/* ===================================== */
+/* 7. Footer */
+/* ===================================== */
+.footer {
+    margin-top: auto;
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* On smaller screens, reduce grid columns & box size */
-@media (max-width: 600px) {
-  .resultGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .resultBox {
-    width: 120px;
-    height: 60px;
-  }
+.footerContainer {
+    background: #fff;
+    border-radius: 25px;
+    padding: 0.6rem;
+    width: 92%;
+    text-align: center;
+    box-shadow: var(--box-shadow);
 }
 
-/* On extra small screens, reduce text size */
-@media (max-width: 400px) {
-  .resultBox a {
-    font-size: 0.8rem;
-  }
+.footerContainer p {
+    margin: 0.5rem 0;
+    font-size: var(--fs-small);
+    color: #333;
+}
+
+/* ===================================== */
+/* 8. Optional Pulse Animation */
+/* ===================================== */
+.pulse {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: pulseAnim 5s linear infinite forwards;
+}
+
+@keyframes pulseAnim {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(3);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(5);
+        opacity: 0;
+    }
 }
