@@ -15,10 +15,11 @@ export default function Home() {
   useEffect(() => {
     let animationFrame;
     const animate = () => {
-      setGradientPosition(prev => (prev + 0.1) % 200);
+      setGradientPosition((prev) => (prev + 0.1) % 200);
       animationFrame = requestAnimationFrame(animate);
     };
     animate();
+
     return () => cancelAnimationFrame(animationFrame);
   }, []);
 
@@ -35,7 +36,7 @@ export default function Home() {
     }, 6000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [styles.container, styles.pulse]);
 
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
@@ -53,6 +54,7 @@ export default function Home() {
     }
 
     setIsResultsVisible(false);
+
     const formData = new FormData();
     formData.append('followers', followersFile);
     formData.append('following', followingFile);
@@ -96,7 +98,10 @@ export default function Home() {
         <main className={styles.main}>
           <div className={styles.bubble}>
             <h2>How it Works</h2>
-            <p>Download your Instagram <b>followers</b> and <b>following</b> lists, then upload them here.</p>
+            <p>
+              Download your Instagram <b>followers</b> and <b>following</b> lists,
+              then upload them here.
+            </p>
           </div>
 
           <div className={styles.bubble}>
@@ -105,9 +110,14 @@ export default function Home() {
               {/* File upload boxes */}
               {['followers', 'following'].map((type) => (
                   <div key={type} className={styles.fileUploadBox}>
-                    <label className={styles.label}>{type.charAt(0).toUpperCase() + type.slice(1)} List:</label>
+                    <label className={styles.label}>
+                      {type.charAt(0).toUpperCase() + type.slice(1)} List:
+                    </label>
                     <div className={styles.customFileContainer}>
-                      <label htmlFor={`file${type}`} className={styles.customFileButton}>
+                      <label
+                          htmlFor={`file${type}`}
+                          className={styles.customFileButton}
+                      >
                         Choose file
                       </label>
                       <input
@@ -118,9 +128,15 @@ export default function Home() {
                       />
                       <span
                           className={styles.fileNameSpan}
-                          title={type === 'followers' ? followersFile?.name : followingFile?.name}
+                          title={
+                            type === 'followers'
+                                ? followersFile?.name
+                                : followingFile?.name
+                          }
                       >
-                    {(type === 'followers' ? followersFile?.name : followingFile?.name) || 'No file chosen'}
+                    {type === 'followers'
+                        ? followersFile?.name
+                        : followingFile?.name || 'No file chosen'}
                   </span>
                     </div>
                   </div>
@@ -132,7 +148,10 @@ export default function Home() {
           </div>
 
           {isResultsVisible && (
-              <div className={`${styles.bubble} ${styles.resultsContainer}`} data-visible={isResultsVisible}>
+              <div
+                  className={`${styles.bubble} ${styles.resultsContainer}`}
+                  data-visible={isResultsVisible}
+              >
                 <h2 className={styles.header2}>Not Following You Back:</h2>
                 {error && <p className={styles.error}>{error}</p>}
                 {results.map((group, groupIndex) => (
@@ -143,7 +162,11 @@ export default function Home() {
                               className={styles.resultBox}
                               title={user.username}
                           >
-                            <a href={user.profileLink} target="_blank" rel="noopener noreferrer">
+                            <a
+                                href={user.profileLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                               {user.username}
                             </a>
                           </div>
@@ -156,7 +179,9 @@ export default function Home() {
 
         <footer className={styles.footer}>
           <div className={styles.footerContainer}>
-            <p><b>Disclaimer:</b> This tool is not affiliated with Instagram.</p>
+            <p>
+              <b>Disclaimer:</b> This tool is not affiliated with Instagram.
+            </p>
             <p>© 2025 Follower Checker</p>
           </div>
         </footer>
