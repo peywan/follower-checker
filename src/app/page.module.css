@@ -207,7 +207,7 @@
 .resultGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 3rem; /* Slight gap between boxes */
+    gap: 5rem; /* Slight gap between boxes */
     margin-top: 1rem;
     justify-items: center;
 }
@@ -215,9 +215,9 @@
 .resultBox {
     background: #ffffff;
     width: 200px;
-    height: 200px;
+    height: 70px;
     border-radius: 25px;
-    padding: 5px;
+    padding: -30px;
     box-shadow: var(--box-shadow);
     text-align: center;
     display: flex;
@@ -230,10 +230,9 @@
 
 /* 1) Larger Username Text */
 .resultBox a {
-    font-size: 1.5rem; /* Increase this to see a bigger difference (e.g., 2rem) */
-    font-weight: bold;
+    font-size: 0.9rem; /* Increase this to see a bigger difference (e.g., 2rem) */
+    font-weight: normal;
     color: var(--primary-color);
-    text-decoration: none;
     line-height: 1.5;
     white-space: nowrap;
     overflow: hidden;
