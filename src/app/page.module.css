@@ -1,7 +1,8 @@
 /* ===================================== */
-/* 1. Global Variables */
+/* 1. Container & Scoped Variables */
 /* ===================================== */
-:global(:root) {
+.container {
+    /* Use these custom properties like "globals" within this page */
     --fs-small: 1rem;
     --fs-medium: 1.2rem;
     --fs-large: 1.5rem;
@@ -9,20 +10,35 @@
     --primary-hover: #bb2569;
     --secondary-bg: #f9f9f9;
     --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-/* ===================================== */
-/* 2. General Layout and Containers */
-/* ===================================== */
-.container {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     padding: 2rem 0;
-    background: linear-gradient(135deg, #f58529 0%, #dd2a7b 40%, #8134af 65%, #515bd4 100%);
     color: #333;
     min-height: 100vh;
     text-align: center;
+    position: relative; /* for pulse elements */
+    overflow: hidden;   /* so pulses don't scroll out of container */
+
+    /* If you’d like an initial background gradient,
+       you can keep or remove this since you also set it inline
+       in page.js with containerStyle. */
+    background: linear-gradient(
+            135deg,
+            #f58529 0%,
+            #dd2a7b 40%,
+            #8134af 65%,
+            #515bd4 100%
+    );
 }
 
+/* Optional .header styling, if needed */
+.header {
+    /* Add custom styling if needed */
+}
+
+/* ===================================== */
+/* 2. Layout & Bubbles */
+/* ===================================== */
 .main {
     display: flex;
     flex-direction: column;
@@ -44,18 +60,23 @@
 }
 
 /* ===================================== */
-/* 3. Headers and Text */
+/* 3. Headers & Text */
 /* ===================================== */
 .title {
     font-size: var(--fs-large);
     font-weight: bold;
-    color: #fff;
+    color: #fff; /* Over the gradient background */
 }
 
 .header2 {
     font-size: var(--fs-large);
     font-weight: bold;
     text-align: center;
+    margin-bottom: 1rem;
+}
+
+.error {
+    color: red;
     margin-bottom: 1rem;
 }
 
@@ -67,6 +88,14 @@
     justify-content: center;
     gap: 2rem;
     margin-bottom: 1rem;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+/* Force side-by-side for screens >= 600px */
+@media (min-width: 600px) {
+    .fileUploadRow {
+        flex-wrap: nowrap; /* No wrapping on larger screens */
+    }
 }
 
 .fileUploadBox {
@@ -123,7 +152,7 @@
     position: relative;
 }
 
-/* Tooltip for full file name */
+/* Tooltip for full file name on hover */
 .fileNameSpan:hover::after {
     content: attr(title);
     position: absolute;
@@ -170,7 +199,6 @@
     transform: scale(0.95);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
-
 .resultsContainer[data-visible='true'] {
     opacity: 1;
     transform: scale(1);
@@ -179,17 +207,17 @@
 .resultGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-top: 1.5rem;
+    gap: 3rem; /* Slight gap between boxes */
+    margin-top: 1rem;
     justify-items: center;
 }
 
 .resultBox {
     background: #ffffff;
-    width: 200px;
-    height: 120px;
-    border-radius: 10px;
-    padding: 10px;
+    width: 400px;
+    height: 200px;
+    border-radius: 25px;
+    padding: 5px;
     box-shadow: var(--box-shadow);
     text-align: center;
     display: flex;
@@ -197,10 +225,12 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+    /* margin: 0.2rem;  <-- If you want more spacing between boxes */
 }
 
+/* 1) Larger Username Text */
 .resultBox a {
-    font-size: var(--fs-medium);
+    font-size: 1.5rem; /* Increase this to see a bigger difference (e.g., 2rem) */
     font-weight: bold;
     color: var(--primary-color);
     text-decoration: none;
@@ -232,7 +262,9 @@
     z-index: 10;
 }
 
-/* ===================================== / / 7. Footer / / ===================================== */
+/* ===================================== */
+/* 7. Footer */
+/* ===================================== */
 .footer {
     margin-top: auto;
     width: 100%;
@@ -244,9 +276,9 @@
 
 .footerContainer {
     background: #fff;
-    border-radius: 12px;
-    padding: 1.5rem;
-    width: 90%;
+    border-radius: 25px;
+    padding: 0.6rem;
+    width: 92%;
     text-align: center;
     box-shadow: var(--box-shadow);
 }
@@ -255,4 +287,31 @@
     margin: 0.5rem 0;
     font-size: var(--fs-small);
     color: #333;
+}
+
+/* ===================================== */
+/* 8. Optional Pulse Animation */
+/* ===================================== */
+.pulse {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: pulseAnim 5s linear infinite forwards;
+}
+
+@keyframes pulseAnim {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(3);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(5);
+        opacity: 0;
+    }
 }
