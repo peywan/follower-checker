@@ -60,7 +60,7 @@ export default function Home() {
     formData.append('following', followingFile);
 
     try {
-      const res = await fetch('http://127.0.0.1:5000/api/compare', {
+      const res = await fetch('https://follower-checker.onrender.com', {
         method: 'POST',
         body: formData,
       });
