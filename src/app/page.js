@@ -1,3 +1,4 @@
+// page.js
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -92,7 +93,7 @@ export default function Home() {
   return (
       <div className={styles.container} style={containerStyle}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Instagram Follower Checker</h1>
+          <h1 className={styles.title}>Instagram Follower Checker by Peywan</h1>
         </header>
 
         <main className={styles.main}>
@@ -135,7 +136,7 @@ export default function Home() {
                           }
                       >
                     {type === 'followers'
-                        ? followersFile?.name
+                        ? followersFile?.name || 'No file chosen'
                         : followingFile?.name || 'No file chosen'}
                   </span>
                     </div>
