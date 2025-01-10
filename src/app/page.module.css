@@ -45,9 +45,9 @@
 /* Animated fade in for "bubble" containers */
 .bubble {
     background: #fff;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 1.5rem;
-    margin: 1rem auto;
+    margin: 0.9rem auto;
     width: 90%;
     text-align: center;
     box-shadow: var(--box-shadow);
@@ -309,9 +309,10 @@
 
 .footerContainer {
     background: #fff;
-    border-radius: 25px;
-    padding: 0.6rem;
-    width: 92%;
+    border-radius: 30px;
+    padding: 0.9rem;
+    width: 90%;
+    position: sticky;
     text-align: center;
     box-shadow: var(--box-shadow);
 }
